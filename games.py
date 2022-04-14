@@ -3,13 +3,14 @@ import random
 import os
 from playoffs import playoff, finals
 import pygame
-import time
 
 pygame.init()
 swish_sound = pygame.mixer.Sound('swish.mp3')
 miss_sound = pygame.mixer.Sound('miss.mp3')
 bang_sound = pygame.mixer.Sound('bang.mp3')
 three_sound = pygame.mixer.Sound('three.mp3')
+playoff_sound = pygame.mixer.Sound('playoffs.mp3')
+nba_sound = pygame.mixer.Sound('nba.mp3')
 
 def shoot_game(player_list,p1_average,p2_average):
     p1_shots = []
@@ -41,16 +42,19 @@ def shoot_game(player_list,p1_average,p2_average):
                 p2_shots.append(string_p2_shot)
                 print(p2_shots)
         if p1_shots.count('Swish!') == 3:
+            print("--------------------------------------------------------------")
             print(f"{player_list[0]} shot three 3's faster than {player_list[1]}!")
             return 1
-            break
         elif p2_shots.count('Swish!') == 3:
+            print("--------------------------------------------------------------")
             print(f"{player_list[1]} shot three 3's faster than {player_list[0]}!")
             return 2
-            break
 
 def game_miami():
+    pygame.mixer.stop()
+    os.system('clear')
     from main import hawks_lose, hawks_win, main_menu2
+    nba_sound.play()
     while True:
         game_input = input("""
 Your team the Atlanta Hawks are playing against the Miami Heat!
@@ -66,22 +70,31 @@ Which play do you choose?:
         if game_input == '1':
             if "Clint Capela" in config.starting_five:
                 miss_sound.play()
+                print("--------------------------------------------------------------")
                 print('The ball is passed to Clint Capela and he missed his mid range and you lost the game!')
                 config.record = hawks_lose()
-                main_menu2()
+                user_choice = input('Press Enter to continue...')
+                if user_choice == '':
+                    main_menu2()
             elif "Clint Capela" not in config.starting_five:
+                print("--------------------------------------------------------------")
                 print("Clint Capela is not in the starting lineup choose a different option!")
         elif game_input == '2':
             if "Trae Young" in config.starting_five:
+                pygame.mixer.stop()
                 bang_sound.play()
+                print("--------------------------------------------------------------")
                 print('Trae Young takes a deep 3 as the last shot and sinks it! You win the game!')
                 config.record = hawks_win()
-                time.sleep(5)
-                main_menu2()
+                user_choice = input('Press Enter to continue...')
+                if user_choice == '':
+                    main_menu2()
             else:
                 print("Trae Young is not in the starting lineup. You automatically lose for not putting in your best player.")
                 config.record = hawks_lose()
-                main_menu2()
+                user_choice = input('Press Enter to continue...')
+                if user_choice == '':
+                    main_menu2()
         elif game_input == '3':
             print(f"You're a quitter coach {config.user_name.title()}!")
             exit()
@@ -89,6 +102,7 @@ Which play do you choose?:
             print("Try again!")
 
 def game_houston():
+    os.system('clear')
     from main import hawks_lose, hawks_win
     while True:
         game_input = input("""
@@ -105,17 +119,24 @@ Which gameplan do you go with?:
         if game_input == '1':
             print("You lose the game because you did not have enough scoring. Now the team is sad.")
             config.record = hawks_lose()
-            playoff()
+            user_choice = input('Press Enter to continue...')
+            if user_choice == '':
+                playoff()
         elif game_input == '2':
             if "Bogdan Bogdanovic" in config.starting_five or "Kevin Huerter" in config.starting_five:
+                pygame.mixer.stop()
                 three_sound.play()
                 print('You stopped the Rockets from winning by scoring more threes with Bogdan and/or Kevin and won the game!')
                 config.record = hawks_win()
-                playoff()
+                user_choice = input('Press Enter to continue...')
+                if user_choice == '':
+                    playoff()
             else:
                 print("You told your team to shoot more 3's but you didn't have your best wing shooters in the starting lineup. So you lost the game!")
                 config.record = hawks_lose()
-                playoff()
+                user_choice = input('Press Enter to continue...')
+                if user_choice == '':
+                    playoff()
         elif game_input == '3':
             print(f"You're a quitter coach {config.user_name.title()}!")
             exit()
@@ -123,6 +144,7 @@ Which gameplan do you go with?:
             print("Try again!")
 
 def game_brooklyn():
+    os.system('clear')
     from main import hawks_lose, hawks_win
     while True:
         game_input = input("""
@@ -136,9 +158,12 @@ Who do you put on Kevin Durant to contest his game?:
 
         if game_input == '1':
             if "Deandre Hunter" in config.starting_five:
+                print(" ")
                 print("You won the game! Even though Kevin Durant still went off for 40 points. Deandre Hunter was able to stop him on his last possession!")
                 hawks_win()
-                finals()
+                user_choice = input('Press Enter to continue...')
+                if user_choice == '':
+                    finals()
             else:
                 print("You didn't put Deandre Hunter in the starting lineup to guard Kevin Durant!")
                 print("You've let your team down and lost in the Eastern Conference Finals.")
@@ -156,6 +181,7 @@ Who do you put on Kevin Durant to contest his game?:
 
 
 def game_goldenstate():
+    os.system('clear')
     while True:
         game_input = input("""
 Your team the Atlanta Hawks is playing in the NBA Finals against the Warriors!
@@ -169,6 +195,7 @@ Who do you choose to shoot your team's last chances?
         """)
 
         if game_input == '1':
+            print("--------------------------------------------------------------")
             print("Great Choice! You chose me Trae Young to shoot your final shots. In order to win you must make 3 shots before Steph")
             player_list = ["Trae Young", "Steph Curry"]
             points = shoot_game(player_list,p1_average=.355,p2_average=.428)
@@ -178,6 +205,8 @@ Who do you choose to shoot your team's last chances?
             elif points == 2:
                 print("Awww you lost. Seasons over. Try starting all over again!")
         elif game_input == '2':
+            print("--------------------------------------------------------------")
+            print("Great Choice! You chose me Bogdan Bogdanovic to shoot your final shots. In order to win you must make 3 shots before Steph")
             player_list2 = ["Bogdan Bogdanovic", "Steph Curry"]
             points = shoot_game(player_list2,p1_average=.384,p2_average=.428)
             if points == 1:

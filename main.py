@@ -3,8 +3,27 @@ import config
 from games import game_brooklyn, game_miami, game_houston
 from practice import practice1, practice2, practice3, practice4
 import os
+import pygame
+
+pygame.init()
+swish_sound = pygame.mixer.Sound('swish.mp3')
+miss_sound = pygame.mixer.Sound('miss.mp3')
+bang_sound = pygame.mixer.Sound('bang.mp3')
+three_sound = pygame.mixer.Sound('three.mp3')
+playoff_sound = pygame.mixer.Sound('playoffs.mp3')
+nba_sound = pygame.mixer.Sound('nba.mp3')
 
 def start():
+    nba_sound.play()
+    os.system('clear')
+    print("""
+.__   __. .______        ___           _______ .___  ___.            ___   .___________. __          ___      .__   __. .___________.    ___          __    __       ___   ____    __    ____  __  ___      _______.    _______  _______   __  .___________. __    ______   .__   __. 
+|  \ |  | |   _  \      /   \         /  _____||   \/   |  _        /   \  |           ||  |        /   \     |  \ |  | |           |   /   \        |  |  |  |     /   \  \   \  /  \  /   / |  |/  /     /       |   |   ____||       \ |  | |           ||  |  /  __  \  |  \ |  | 
+|   \|  | |  |_)  |    /  ^  \       |  |  __  |  \  /  | (_)      /  ^  \ `---|  |----`|  |       /  ^  \    |   \|  | `---|  |----`  /  ^  \       |  |__|  |    /  ^  \  \   \/    \/   /  |  '  /     |   (----`   |  |__   |  .--.  ||  | `---|  |----`|  | |  |  |  | |   \|  | 
+|  . `  | |   _  <    /  /_\  \      |  | |_ | |  |\/|  |         /  /_\  \    |  |     |  |      /  /_\  \   |  . `  |     |  |      /  /_\  \      |   __   |   /  /_\  \  \            /   |    <       \   \       |   __|  |  |  |  ||  |     |  |     |  | |  |  |  | |  . `  | 
+|  |\   | |  |_)  |  /  _____  \     |  |__| | |  |  |  |  _     /  _____  \   |  |     |  `----./  _____  \  |  |\   |     |  |     /  _____  \     |  |  |  |  /  _____  \  \    /\    /    |  .  \  .----)   |      |  |____ |  '--'  ||  |     |  |     |  | |  `--'  | |  |\   | 
+|__| \__| |______/  /__/     \__\     \______| |__|  |__| (_)   /__/     \__\  |__|     |_______/__/     \__\ |__| \__|     |__|    /__/     \__\    |__|  |__| /__/     \__\  \__/  \__/     |__|\__\ |_______/       |_______||_______/ |__|     |__|     |__|  \______/  |__| \__|                                                                                                                                                                                                                                                                              
+    """)
     config.user_name = input('What is your name?: ')
     print(f"""
 Hello {config.user_name.title()}. You are now the new coach of the Atlanta Hawks! Congrats!
@@ -34,6 +53,7 @@ def choose_starting_five():
             break
 
 def main_menu1():
+    os.system('clear')
     while True:
         user_input = input(f"""
 Now that you have chosen your starting 5. It is time to play the remaining 2 games of the season!
@@ -54,6 +74,8 @@ Enter the number for the option you want to go with, coach {config.user_name.tit
 
 
 def main_menu2():
+    nba_sound.play()
+    os.system('clear')
     while True:
         user_input = input(f"""
 It is time to play the last game of the season!
@@ -79,6 +101,8 @@ Enter the number for the option you want to go with, coach {config.user_name.tit
             exit()
 
 def main_menu3():
+    playoff_sound.play()
+    os.system('clear')
     while True:
         user_input = input(f"""
 Wow! You've made it to the Eastern Conference Finals!
@@ -104,6 +128,7 @@ Enter the number for the option you want to go with, coach {config.user_name.tit
             exit()
 
 def main_menu4():
+    os.system('clear')
     while True:
         user_input = input(f"""
 Hooray! The Atlanta Hawks made it to the NBA Finals!
@@ -130,12 +155,12 @@ Enter the number for the option you want to go with, coach {config.user_name.tit
 
 def hawks_lose():
     print("""
-You just lost the game!
+You just lost this game!
     """)
     return config.record + 0
 
 def hawks_win():
     print("""
-Congrats! You won the game!
+Congrats! You won this game! On to the next!
     """)
     return config.record + 1

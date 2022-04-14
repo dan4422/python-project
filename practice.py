@@ -1,6 +1,7 @@
 import random
 import pygame
 import config
+import os
 
 pygame.init()
 swish_sound = pygame.mixer.Sound('swish.mp3')
@@ -8,7 +9,10 @@ miss_sound = pygame.mixer.Sound('miss.mp3')
 bang_sound = pygame.mixer.Sound('bang.mp3')
 
 def practice1():
+    pygame.mixer.stop()
+    os.system('clear')
     while True:
+        print("--------------------------------------------------------------")
         practice_input = input("""
 Welcome to practice. Here you can see your team practice and get a hint on how to beat your next opponent.
 Choose an option:
@@ -56,7 +60,9 @@ Gorgui Dieng quits the team thanks to your suicides.
             main_menu1()
 
 def practice2():
+    os.system('clear')
     while True:
+        print("--------------------------------------------------------------")
         practice_input = input("""
 Welcome to practice. Here you can see your team practice and get a hint on how to beat your next opponent.
 Choose an option:
@@ -100,7 +106,9 @@ The team is elated and starts chanting we love coach {config.user_name.title()}!
             main_menu2()
 
 def practice3():
+    os.system('clear')
     while True:
+        print("--------------------------------------------------------------")
         practice_input = input("""
 Welcome to practice. Here you can see your team practice and get a hint on how to beat your next opponent.
 Choose an option:
@@ -146,12 +154,14 @@ Clint says thanks coach {config.user_name.title()}!
             main_menu3()
 
 def practice4():
+    os.system('clear')
     while True:
+        print("--------------------------------------------------------------")
         practice_input = input("""
 Welcome to practice. Here you can see your team practice and get a hint on how to beat your next opponent.
 Choose an option:
 1. Talk to the assistant coach
-2. Throw an alley oop to Clint Capela
+2. Give the team a pep talk
 3. Shoot a 3!
 4. Go back to the previous menu    
         """)
@@ -161,22 +171,39 @@ Choose an option:
             print(f"""
 You go up to the assistant coach and ask him about the game plan
 
-You: Hey coach, Go us for making to the Eastern Conference Finals! Now what's our best game plan against the Brooklyn Nets?
+You: Hey coach, WE'RE IN THE NBA FINALS! What do we do about the Golden State Warriors?
 
-Assistant Coach: Hey coach {config.user_name.title()}! Yeah what a time.
+Assistant Coach: Hey coach {config.user_name.title()}! All our hard work paid off!
 
-Assistant Coach: Against Brooklyn, we need someone who can guard Kevin Durant and contest his shots!
+Assistant Coach: Honestly, in the finals we just have to trust our team and our players.
 
-Assistant Coach: We should make sure Deandre Hunter is on the starting lineup!
+Assistant Coach: Statistically, Steph Curry is the best shooter out there! So we just need to be statistically better!
 """)
         elif practice_input == '2':
-            print(f"""
-A ball bounces to you and Clint is looking at you and pointing to the rim.
+            coach_choice = input(f"""
+You told the team to gather up so you can make one last pep talk before the game.
 
-Hinting that he wants an alley oop. You throw the alley oop and he dunks it.
+The team gathers up and you make your speech. The team is motivated more than ever!
 
-Clint says thanks coach {config.user_name.title()}! You're the best!
-            """)
+Even Gorgui Dieng comes back to the team and apologizes to you so he can be on the team again.
+
+Gorgui Dieng: Sorry coach {config.user_name.title()} about storming out last time. I'd love to play for you again.
+
+Do you let him back in the team? (yes/no):
+            """).lower()
+            if coach_choice == 'yes':
+                print("--------------------------------------------------------------")
+                print(f"""
+You let him back in cause you're a good coach. 🥲
+
+Gorgui Dieng: Thanks Coach! You're the best!""")
+            elif coach_choice == 'no':
+                print("--------------------------------------------------------------")
+                print(f"""
+Gorgui Dieng throws a ball at your feet and storms off! 🏀
+
+Gorgui Dieng: You suck! 🤬
+                """)
         elif practice_input == '3':
             print("You pick up a basketball and try shooting a 3.")
             shots = ['Miss!','Miss!','Swish!',"Miss!"]
