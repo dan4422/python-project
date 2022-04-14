@@ -1,7 +1,7 @@
 import random
 import config
 from games import game_brooklyn, game_miami, game_houston
-from practice import practice1, practice2, practice3
+from practice import practice1, practice2, practice3, practice4
 import os
 
 def start():
@@ -103,16 +103,30 @@ Enter the number for the option you want to go with, coach {config.user_name.tit
             print(f"You're a quitter coach {config.user_name.title()}!")
             exit()
 
+def main_menu4():
+    while True:
+        user_input = input(f"""
+Hooray! The Atlanta Hawks made it to the NBA Finals!
+Choose to practice or play the game against your next opponent, the Golden State Warriors!
+Or you can change your starting lineup!
+Enter the number for the option you want to go with, coach {config.user_name.title()}.
+1. Practice
+2. Play game against the Golden State Warriors
+3. Change your starting lineup
+4. Quit
+        """)
 
-
-
-
-
-
-
-
-
-
+        if user_input == '1':
+            practice4()
+        elif user_input == '2':
+            from games import game_goldenstate
+            game_goldenstate()
+        elif user_input == '3':
+            from main import choose_starting_five
+            choose_starting_five()
+        elif user_input == '4':
+            print(f"You're a quitter coach {config.user_name.title()}!")
+            exit()
 
 def hawks_lose():
     print("""

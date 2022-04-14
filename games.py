@@ -1,4 +1,5 @@
 import config
+import random
 import os
 from playoffs import playoff, finals
 import pygame
@@ -9,6 +10,44 @@ swish_sound = pygame.mixer.Sound('swish.mp3')
 miss_sound = pygame.mixer.Sound('miss.mp3')
 bang_sound = pygame.mixer.Sound('bang.mp3')
 three_sound = pygame.mixer.Sound('three.mp3')
+
+def shoot_game(player_list,p1_average,p2_average):
+    p1_shots = []
+    p2_shots = []
+    while True:
+        for player in player_list:
+            print(f"It's {player} turn to shoot!")
+            ball = ['Swish!','Miss!']
+            if player == player_list[0]:
+                while True:
+                    shoot = input('Press Enter to shoot!')
+                    if shoot == '':
+                        p1_shot = random.choices(ball, weights = [p1_average,(1-p1_average)], k = 1)
+                        string_p1_shot = " ".join(p1_shot)
+                        if string_p1_shot == 'Swish!':
+                            swish_sound.play()
+                        elif string_p1_shot == 'Miss!':
+                            miss_sound.play()
+                        p1_shots.append(string_p1_shot)
+                        print(p1_shots)
+                        break
+            elif player == player_list[1]:
+                p2_shot = random.choices(ball, weights = [p2_average,(1-p2_average)], k = 1)
+                string_p2_shot = " ".join(p2_shot)
+                if string_p1_shot == 'Swish!':
+                    swish_sound.play()
+                elif string_p1_shot == 'Miss!':
+                    miss_sound.play()
+                p2_shots.append(string_p2_shot)
+                print(p2_shots)
+        if p1_shots.count('Swish!') == 3:
+            print(f"{player_list[0]} shot three 3's faster than {player_list[1]}!")
+            return 1
+            break
+        elif p2_shots.count('Swish!') == 3:
+            print(f"{player_list[1]} shot three 3's faster than {player_list[0]}!")
+            return 2
+            break
 
 def game_miami():
     from main import hawks_lose, hawks_win, main_menu2
@@ -96,13 +135,56 @@ Who do you put on Kevin Durant to contest his game?:
         """)
 
         if game_input == '1':
-            print("You won the game! Even though Kevin Durant still went off for 40 points. Deandre Hunter was able to stop him on his last possession!")
-            hawks_win()
-            finals()
+            if "Deandre Hunter" in config.starting_five:
+                print("You won the game! Even though Kevin Durant still went off for 40 points. Deandre Hunter was able to stop him on his last possession!")
+                hawks_win()
+                finals()
+            else:
+                print("You didn't put Deandre Hunter in the starting lineup to guard Kevin Durant!")
+                print("You've let your team down and lost in the Eastern Conference Finals.")
+                print('Season is over. Have fun in Cancun!')
+                exit()
         elif game_input == '2':
                 print('You put Trae Young the smallest player in the NBA on one the best scorers in the league and you lost in the ECF!')
                 print('Season is over. Have fun in Cancun!')
                 exit()
+        elif game_input == '3':
+            print(f"You're a quitter coach {config.user_name.title()}!")
+            exit()
+        else:
+            print("Try again!")
+
+
+def game_goldenstate():
+    while True:
+        game_input = input("""
+Your team the Atlanta Hawks is playing in the NBA Finals against the Warriors!
+Steph Curry is going off in the 3 point land against the Hawks
+While Trae Young and Bogdan Bogdanovic is shooting lights out against the Warriors
+For this game, we need to choose either Trae Young or Bogdan Bogdanovic to play a game and win the finals!
+Who do you choose to shoot your team's last chances?
+1. Trae Young
+2. Bogdan Bogdanovic
+3. Give up.
+        """)
+
+        if game_input == '1':
+            print("Great Choice! You chose me Trae Young to shoot your final shots. In order to win you must make 3 shots before Steph")
+            player_list = ["Trae Young", "Steph Curry"]
+            points = shoot_game(player_list,p1_average=.355,p2_average=.428)
+            if points == 1:
+                print("Congratulations! You won the NBA Finals! You beat the game!")
+                exit()
+            elif points == 2:
+                print("Awww you lost. Seasons over. Try starting all over again!")
+        elif game_input == '2':
+            player_list2 = ["Bogdan Bogdanovic", "Steph Curry"]
+            points = shoot_game(player_list2,p1_average=.384,p2_average=.428)
+            if points == 1:
+                print("Congratulations! You won the NBA Finals! You beat the game!")
+                exit()
+            elif points == 2:
+                print("Awww you lost. Seasons over. Try starting all over again!")
         elif game_input == '3':
             print(f"You're a quitter coach {config.user_name.title()}!")
             exit()

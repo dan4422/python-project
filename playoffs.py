@@ -1,6 +1,6 @@
-from json.tool import main
 import config
 import games
+
 
 def playoff():
     from main import main_menu3
@@ -14,4 +14,6 @@ def playoff():
         print("something wrong with code")
 
 def finals():
+    from main import main_menu4
     print('You made it to the finals!')
+    main_menu4()
