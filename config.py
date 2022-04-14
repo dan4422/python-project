@@ -5,3 +5,5 @@ hawks_players = ["Trae Young", "John Collins", "Bogdan Bogdanovic", "Kevin Huert
 "Timothe Luwawu-Cabarrot", "Skylar Mays", "Gorgui Dieng"]
 
 starting_five = []
+
+record = 0

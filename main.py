@@ -53,15 +53,14 @@ Enter the number for the option you want to go with, coach {config.user_name.tit
 
 def hawks_lose():
     print("""
-You just lost the game against the Miami Heat!
-It's alright you got one more chance to make the playoffs.
-Your next opponent is the Houston Rockets.
-Make sure to win this one or the season will be over.
+You just lost the game!
     """)
+    return config.record + 0
 
 def hawks_win():
-    print("""Congrats! You made it to the playoffs. Now the next game should be less pressure, but be sure to win!
+    print("""Congrats! You won the game!
     """)
+    return config.record + 1
 
 def main_menu2():
     while True:
@@ -86,3 +85,29 @@ Enter the number for the option you want to go with, coach {config.user_name.tit
             choose_starting_five()
         elif user_input == '4':
             print(f"You're a quitter coach {config.user_name.title()}!")
+            exit()
+
+def main_menu3():
+    while True:
+        user_input = input(f"""
+Congratulations you won at least one of the regular season games and you're in the playoffs!
+Choose to practice or play the game against your next opponent, the Brooklyn Nets!
+Or you can change your starting lineup!
+Enter the number for the option you want to go with, coach {config.user_name.title()}.
+1. Practice
+2. Play game against the Houston Rockets
+3. Change your starting lineup
+4. Quit
+        """)
+
+        if user_input == '1':
+            practice2()
+        elif user_input == '2':
+            from games import game_houston
+            game_houston()
+        elif user_input == '3':
+            from main import choose_starting_five
+            choose_starting_five()
+        elif user_input == '4':
+            print(f"You're a quitter coach {config.user_name.title()}!")
+            exit()
