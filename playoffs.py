@@ -1,12 +1,17 @@
+from json.tool import main
 import config
 import games
 
 def playoff():
+    from main import main_menu3
     if config.record >= 1:
         print("You're going to the playoffs!")
-        games.game_brooklyn()
+        main_menu3()
     elif config.record == 0: 
         print("You lost both games and didn't make it to the playoffs! Better luck next year.")
         exit()
     else:
         print("something wrong with code")
+
+def finals():
+    print('You made it to the finals!')

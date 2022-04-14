@@ -1,7 +1,7 @@
 import random
 import config
-from games import game_miami, game_houston
-from practice import practice1, practice2
+from games import game_brooklyn, game_miami, game_houston
+from practice import practice1, practice2, practice3
 import os
 
 def start():
@@ -51,16 +51,7 @@ Enter the number for the option you want to go with, coach {config.user_name.tit
         elif user_input == '3':
             print(f"You're a quitter coach {config.user_name.title()}!")
 
-def hawks_lose():
-    print("""
-You just lost the game!
-    """)
-    return config.record + 0
 
-def hawks_win():
-    print("""Congrats! You won the game!
-    """)
-    return config.record + 1
 
 def main_menu2():
     while True:
@@ -90,24 +81,47 @@ Enter the number for the option you want to go with, coach {config.user_name.tit
 def main_menu3():
     while True:
         user_input = input(f"""
-Congratulations you won at least one of the regular season games and you're in the playoffs!
+Wow! You've made it to the Eastern Conference Finals!
 Choose to practice or play the game against your next opponent, the Brooklyn Nets!
 Or you can change your starting lineup!
 Enter the number for the option you want to go with, coach {config.user_name.title()}.
 1. Practice
-2. Play game against the Houston Rockets
+2. Play game against the Brooklyn Nets
 3. Change your starting lineup
 4. Quit
         """)
 
         if user_input == '1':
-            practice2()
+            practice3()
         elif user_input == '2':
-            from games import game_houston
-            game_houston()
+            from games import game_brooklyn
+            game_brooklyn()
         elif user_input == '3':
             from main import choose_starting_five
             choose_starting_five()
         elif user_input == '4':
             print(f"You're a quitter coach {config.user_name.title()}!")
             exit()
+
+
+
+
+
+
+
+
+
+
+
+
+def hawks_lose():
+    print("""
+You just lost the game!
+    """)
+    return config.record + 0
+
+def hawks_win():
+    print("""
+Congrats! You won the game!
+    """)
+    return config.record + 1
