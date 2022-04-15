@@ -12,17 +12,16 @@ bang_sound = pygame.mixer.Sound('bang.mp3')
 three_sound = pygame.mixer.Sound('three.mp3')
 playoff_sound = pygame.mixer.Sound('playoffs.mp3')
 nba_sound = pygame.mixer.Sound('nba.mp3')
+hawks_sound = pygame.mixer.Sound('hawks.mp3')
+victory_sound = pygame.mixer.Sound('victory.mp3')
+defense_sound = pygame.mixer.Sound('defense.mp3')
+lose_sound = pygame.mixer.Sound('lose.mp3')
 
 def start():
     nba_sound.play()
     os.system('clear')
     print("""
-.__   __. .______        ___           _______ .___  ___.            ___   .___________. __          ___      .__   __. .___________.    ___          __    __       ___   ____    __    ____  __  ___      _______.    _______  _______   __  .___________. __    ______   .__   __. 
-|  \ |  | |   _  \      /   \         /  _____||   \/   |  _        /   \  |           ||  |        /   \     |  \ |  | |           |   /   \        |  |  |  |     /   \  \   \  /  \  /   / |  |/  /     /       |   |   ____||       \ |  | |           ||  |  /  __  \  |  \ |  | 
-|   \|  | |  |_)  |    /  ^  \       |  |  __  |  \  /  | (_)      /  ^  \ `---|  |----`|  |       /  ^  \    |   \|  | `---|  |----`  /  ^  \       |  |__|  |    /  ^  \  \   \/    \/   /  |  '  /     |   (----`   |  |__   |  .--.  ||  | `---|  |----`|  | |  |  |  | |   \|  | 
-|  . `  | |   _  <    /  /_\  \      |  | |_ | |  |\/|  |         /  /_\  \    |  |     |  |      /  /_\  \   |  . `  |     |  |      /  /_\  \      |   __   |   /  /_\  \  \            /   |    <       \   \       |   __|  |  |  |  ||  |     |  |     |  | |  |  |  | |  . `  | 
-|  |\   | |  |_)  |  /  _____  \     |  |__| | |  |  |  |  _     /  _____  \   |  |     |  `----./  _____  \  |  |\   |     |  |     /  _____  \     |  |  |  |  /  _____  \  \    /\    /    |  .  \  .----)   |      |  |____ |  '--'  ||  |     |  |     |  | |  `--'  | |  |\   | 
-|__| \__| |______/  /__/     \__\     \______| |__|  |__| (_)   /__/     \__\  |__|     |_______/__/     \__\ |__| \__|     |__|    /__/     \__\    |__|  |__| /__/     \__\  \__/  \__/     |__|\__\ |_______/       |_______||_______/ |__|     |__|     |__|  \______/  |__| \__|                                                                                                                                                                                                                                                                              
+    Welcome to the NBA Coach Game: Atlanta Hawks Edition!                                                                                                                                                                                                              
     """)
     config.user_name = input('What is your name?: ')
     print(f"""
@@ -128,6 +127,7 @@ Enter the number for the option you want to go with, coach {config.user_name.tit
             exit()
 
 def main_menu4():
+    pygame.mixer.stop()
     os.system('clear')
     while True:
         user_input = input(f"""

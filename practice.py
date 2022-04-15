@@ -7,6 +7,13 @@ pygame.init()
 swish_sound = pygame.mixer.Sound('swish.mp3')
 miss_sound = pygame.mixer.Sound('miss.mp3')
 bang_sound = pygame.mixer.Sound('bang.mp3')
+three_sound = pygame.mixer.Sound('three.mp3')
+playoff_sound = pygame.mixer.Sound('playoffs.mp3')
+nba_sound = pygame.mixer.Sound('nba.mp3')
+hawks_sound = pygame.mixer.Sound('hawks.mp3')
+victory_sound = pygame.mixer.Sound('victory.mp3')
+defense_sound = pygame.mixer.Sound('defense.mp3')
+lose_sound = pygame.mixer.Sound('lose.mp3')
 
 def practice1():
     pygame.mixer.stop()
@@ -60,6 +67,7 @@ Gorgui Dieng quits the team thanks to your suicides.
             main_menu1()
 
 def practice2():
+    pygame.mixer.stop()
     os.system('clear')
     while True:
         print("--------------------------------------------------------------")
@@ -106,6 +114,7 @@ The team is elated and starts chanting we love coach {config.user_name.title()}!
             main_menu2()
 
 def practice3():
+    pygame.mixer.pause()
     os.system('clear')
     while True:
         print("--------------------------------------------------------------")
@@ -154,6 +163,7 @@ Clint says thanks coach {config.user_name.title()}!
             main_menu3()
 
 def practice4():
+    pygame.mixer.stop()
     os.system('clear')
     while True:
         print("--------------------------------------------------------------")

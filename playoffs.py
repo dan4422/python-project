@@ -1,9 +1,11 @@
 import config
 import games
+import pygame
 
 
 def playoff():
     from main import main_menu3
+    pygame.mixer.stop()
     if config.record >= 1:
         print(" ")
         print("You're going to the playoffs!")
