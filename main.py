@@ -16,8 +16,14 @@ hawks_sound = pygame.mixer.Sound('hawks.mp3')
 victory_sound = pygame.mixer.Sound('victory.mp3')
 defense_sound = pygame.mixer.Sound('defense.mp3')
 lose_sound = pygame.mixer.Sound('lose.mp3')
+nba_sound.set_volume(.2)
+playoff_sound.set_volume(.2)
+hawks_sound.set_volume(.2)
+defense_sound.set_volume(.2)
+bang_sound.set_volume(.3)
 
 def start():
+    nba_sound.set_volume(.2)
     nba_sound.play()
     os.system('clear')
     print("""
